@@ -7,10 +7,62 @@
     </head>
     <body>
         <h1>Launch Checklist Form</h1>
+        
         <div id="missionTarget">
+            <script>
+                window.addEventListener("load", function() {
+                   fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
+                      response.json().then( function(json) {
+                         const div = document.getElementById("mission-destination");
+                         // Add HTML that includes the JSON data
+                         div.innerHTML = `
+                            <ul>
+                               <li>Name: ${K2-18b}</li>, 
+                               <li>Diameter: ${34500 km}</li>, 
+                               <li>Star: ${K2-18}</li>, 
+                               <li>Distance from Earth: ${110 light years from Earth}</li>, 
+                               <li>Number of Moons: ${unknown}</li>
+                            </ul>
+
+                         `;
+                      });
+                   });
+                });
+             </script>
             <!-- Fetch some planetary data -->
         </div> 
         <div id="launchForm">
+            <script>
+                window.addEventListener("load", function() {
+                   let form = document.querySelector("form");
+                   form.addEventListener("submit", function(event) {
+                      let pilotName = document.querySelector("input[name=pilotname]");
+                      let copilotName = document.querySelector("input[name=copilotname]");
+                      let fuelLevel = document.querySelector("input[name=fuellevel]");
+                      let cargoMass = document.querySelector("input[name=cargolevel]");
+                      if (pilotnameInput.value === "" || copilotName.value === "" || fuelLevel.value === "" || cargoMass.value || "") {
+                         alert("All fields are required!");
+                         // stop the form submission
+                    
+                         event.preventDefault();
+                      if (pilotName.value !== "Chris")
+                         alert("Enter Chris for pilots name!");
+                         event.preventDefault();
+                      if (copilotName.vaule !== "Blake")
+                         alert("Enter Blake for co-pilots name!");
+                         event.preventDefault();
+                      if (fuelLevel.value isNaN(value))
+                         alert("Field must contain a number!");
+                         event.preventDefault();
+                      if (cargoMass.value isNaN(value))
+                         alert("Field must contain a number!");
+                         event.preventDefault();
+
+
+                      }
+                   });
+                });
+             </script>
             <form>
                 <div style="display:flex; flex-direction: row; justify-content: center; align-items: center; margin: 8 0;">
                     <label>Pilot Name <input type="text" name="pilotName" id="pilotName"/></label>

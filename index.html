@@ -9,97 +9,11 @@
         <h1>Launch Checklist Form</h1>
         
         <div id="missionTarget">
-            <script>
-                window.addEventListener("load", function() {
-                   fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
-                      response.json().then( function(json) {
-                         const div = document.getElementById("missionTarget");
-                         // Add HTML that includes the JSON data **array #4**
-                         div.innerHTML = `
-                            <ul>
-                            <img src="${json[4].image}">
-                               <li>Name: ${json[4].name}</li>
-                               <li>Diameter: ${json[4].diameter}</li>
-                               <li>Star: ${json[4].star}</li>
-                               <li>Distance from Earth: ${json[4].distance}</li> 
-                               <li>Number of Moons: ${json[4].moons}</li>
-                            </ul>
-
-                         `;
-                      });
-                   });
-                });
-             </script>
+            
             <!-- Fetch some planetary data -->
         </div> 
         <div id="launchForm">
-            <script>
-                window.addEventListener("load", function() {
-                   let form = document.querySelector("form");
-                   form.addEventListener("submit", function(event){
-                    
-                    let pilotName = document.querySelector("input[name=pilotName]");
-                    let copilotName = document.querySelector("input[name=copilotName]");
-                    let fuelLevel = document.querySelector("input[name=fuelLevel]");
-                    let cargoMass = document.querySelector("input[name=cargoMass]");
-                    let launchStatus = document.getElementById('launchStatus');
-                    let fuelStatus = document.getElementById('fuelStatus');
-                    let cargoStatus = document.getElementById('cargoStatus');
-                    let faultyItems = document.getElementById('faultyItems');
-                    let flightIsReady = true
-                    event.preventDefault();
-
-                      
-                   
-                    if (pilotName.value === "" || copilotName.value === "" || fuelLevel.value === "" || cargoMass.value === "") {
-                         alert("All fields are required!")
-                         flightIsReady = false
-                        
-                    } 
-                    if (isNaN(fuelLevel.value) || isNaN(cargoMass.value)) {
-                          alert("Field must contain a valid number.")
-                          flightIsReady = false
-                         
-                    }
-                      
-                    if ( !isNaN(pilotName.value) || !isNaN(copilotName.value) ) {
-                        //document.getElementById(pilotStatus).innerHTML = `Pilot ${pilotName.value}ready for launch.`;
-                        //document.getElementById(copilotStatus).innerHTML = `Co-pilot ${copilotName.value}ready for launch.`; 
-                        alert("Field must contain a valid name.")
-                        flightIsReady = false
-                        
-                    }
-                      
-                    if (fuelStatus < 10000) {
-                         launchStatus.style.color = 'red';
-                         launchStatus.innerHTML = 'There is not enough fuel for the journey.';
-                         faultyItems.style.visibility = 'visible';
-                         flightIsReady = false
-                            
-                    }
-                         
-                    if (cargoStatus > 10000) {
-                          launchStatus.style.color = 'red';  
-                          launchStatus.innerHTML = 'There is too much mass for the shuttle to take off.';
-                          faultyItems.style.visibility = 'visible';
-                          flightIsReady = false
-                          
-                          
-                    
-                    } 
-                    if (flightIsReady){ 
-                        cargoStatus.innerHTML = 'Cargo mass low enough for launch.'  
-                        fuelStatus.innerHTML = 'Fuel level high enough for launch.';
-                          launchStatus.style.color = 'green';
-                          launchStatus.innerHTML = 'Shuttle is ready for launch.';
-                          faultyItems.style.visibility = 'visible';
-                            
-                    }
-                     
-                       
-                });  
-            });     
-             </script>
+            
             <form>
                 <div style="display:flex; flex-direction: row; justify-content: center; align-items: center; margin: 8 0;">
                     <label>Pilot Name <input type="text" name="pilotName" id="pilotName"/></label>

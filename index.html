@@ -45,21 +45,22 @@
                     let fuelStatus = document.getElementById('fuelStatus');
                     let cargoStatus = document.getElementById('cargoStatus');
                     let faultyItems = document.getElementById('faultyItems');
+                    event.preventDefault();
                       
                    
-                      if (pilotName === "" || copilotName === "" || fuelLevel === "" || cargoMass === "") {
+                      if (pilotName.value === "" || copilotName.value === "" || fuelLevel.value === "" || cargoMass.value === "") {
                          alert("All fields are required!")
-                         event.preventDefault();
-                      }
-                      if (isNaN(fuelLevel.value) || isNaN(cargoMass.value)); {
+                        
+                      } 
+                      if (isNaN(fuelLevel.value) || isNaN(cargoMass.value)) {
                           alert("Field must contain a valid number.")
-                          event.preventDefault();
+                         
                       }
-                      if (pilotName !== "" || copilotName !== "" ); {
+                      if ( !isNaN(pilotName.value) || !isNaN(copilotName.value) ) {
                         //document.getElementById(pilotStatus).innerHTML = `Pilot ${pilotName.value}ready for launch.`;
                         //document.getElementById(copilotStatus).innerHTML = `Co-pilot ${copilotName.value}ready for launch.`; 
                         alert("Field must contain a valid name.")
-                        event.preventDefault();
+                        
                       }
                       
                       if (fuelStatus < 10000 && cargoStatus < 10000) {

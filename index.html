@@ -36,51 +36,59 @@
             <script>
                 window.addEventListener("load", function() {
                    let form = document.querySelector("form");
-                   form.addEventListener("submit", function(event) {
-                                
-                      let pilotName = document.querySelector("input[name=pilotname]");
-                      let copilotName = document.querySelector("input[name=copilotname]");
-                      let fuelLevel = document.querySelector("input[name=fuellevel]");
-                      let cargoMass = document.querySelector("input[name=cargomass]");
-                      let launchStatus = document.getElementById('launchStatus');
-                      let fuelStatus = document.getElementById('fuelStatus');
-                      let cargoStatus = document.getElementById('cargoStatus');
-                      let items = document.getElementById('faultyItems');
-                      let readyStatus = true;
-
-                      if (pilotName === "" || copilotName === "" || fuelLevel === "" || isNaN(fuelStatus) || cargoMass === "" || isNaN(cargoMass)) {
+                   form.addEventListener("submit", function(event){
+                    let pilotName = document.querySelector("input[name=pilotName]".value);
+                    let copilotName = document.querySelector("input[name=copilotName]".value);
+                    let fuelLevel = document.querySelector("input[name=fuelLevel]".value);
+                    let cargoMass = document.querySelector("input[name=cargoMass]".value);
+                    let launchStatus = document.getElementById('launchStatus');
+                    let fuelStatus = document.getElementById('fuelStatus');
+                    let cargoStatus = document.getElementById('cargoStatus');
+                    let faultyItems = document.getElementById('faultyItems');
+                      
+                   
+                      if (pilotName === "" || copilotName === "" || fuelLevel === "" || cargoMass === "") {
                          alert("All fields are required!")
-                         items.style.visibility = 'hidden';
-                         launchStatus.style.color = 'black';
-                         launchStatus.innerHTML = 'Awaiting information before launch.';
                          event.preventDefault();
-                      } else {
-                          items.style.visibility = 'visible';
-                          document.getElementById(pilotStatus).innerHTML = `Pilot ${pilotName + ''}ready for launch.`;
-                          document.getElementById(copilotStatus).innerHTML = `Co-pilot ${copilotName + ''}ready for launch.`;
-                          event.preventDefault();
-                        }
-                      if (fuelStatus < 10000) {
-                         readyStatus = false;
-                         fuelStatus.innerHTML = 'Not enough fuel for launch.';
-                         event.preventDefault();
-                      } else {
-                          fuelStatus.innerHTML = 'Fuel level high enough for launch.';
+                      }
+                      if (isNaN(fuelLevel.value) || isNaN(cargoMass.value)); {
+                          alert("Field must contain a valid number.")
                           event.preventDefault();
                       }
-                      if (readyStatus) {
-                         items.style.visibility = 'visible';
-                         launchStatus.style.color = 'green';
-                         launchStatus.innerHTML = 'Shuttle is ready for launch.';
-                         event.preventDefault();
-                      } else {
-                          items.style.visibility = 'visible';
-                          launchStatus.style.color = 'red';
-                          launchStatus.innerHTML = 'Shuttle is not ready for launch.';
-                          event.preventDefault();
+                      if (pilotName.value !== "" || copilotName.value !== ""); {
+                        document.getElementById(pilotStatus).innerHTML = `Pilot ${pilotName.value}ready for launch.`;
+                        document.getElementById(copilotStatus).innerHTML = `Co-pilot ${copilotName.value}ready for launch.`; 
+                        alert("Field must contain a valid name.")
+                        event.preventDefault();
                       }
-                    });  
-                });     
+                      
+                      if (fuelStatus < 10000 && cargoStatus < 10000) {
+                         launchStatus.style.color = 'red';
+                         launchStatus.innerHTML = 'There is not enough fuel for the journey.';
+                         faultyItems.style.visibility = 'visible';
+                            
+                      }
+                         
+                      if (fuelStatus > 10000 && cargoStatus > 10000) {
+                          launchStatus.style.color = 'red';  
+                          launchStatus.innerHTML = 'There is too much mass for the shuttle to take off.';
+                          faultyItems.style.visibility = 'visible';
+                          document.getElementById(pilotStatus).innerHTML = `Pilot ${pilotName.value}ready for launch.`;
+                          document.getElementById(copilotStatus).innerHTML = `Co-pilot ${copilotName.value}ready for launch.`;
+                          
+                    
+                      } else { 
+                        cargoStatus.innerHTML = 'Cargo mass low enough for launch.'  
+                        fuelStatus.innerHTML = 'Fuel level high enough for launch.';
+                          launchStatus.style.color = 'green';
+                          launchStatus.innerHTML = 'Shuttle is ready for launch.';
+                          faultyItems.style.visibility = 'visible';
+                            
+                    }
+                     
+                       
+                });  
+            });     
             
            
     
@@ -90,13 +98,13 @@
                     <label>Pilot Name <input type="text" name="pilotName" id="pilotName"/></label>
                 </div>
                 <div style="display:flex; flex-direction: row; justify-content: center; align-items: center; margin: 8 0;">
-                    <label>Co-pilot Name <input type="text" name="copilotName"/></label>
+                    <label>Co-pilot Name <input type="text" name="copilotName" id="copilotName"/></label>
                 </div>
                 <div style="display:flex; flex-direction: row; justify-content: center; align-items: center; margin: 8 0;">
-                    <label>Fuel Level (L) <input type="text" name="fuelLevel"/></label> 
+                    <label>Fuel Level (L) <input type="text" name="fuelLevel" id="fuelLevel"/></label> 
                 </div>
                 <div style="display:flex; flex-direction: row; justify-content: center; align-items: center; margin: 8 0;">
-                    <label>Cargo Mass (kg) <input type="text" name="cargoMass"/></label>
+                    <label>Cargo Mass (kg) <input type="text" name="cargoMass" id="cargoMass"/></label>
                 </div>
                 <button id="formSubmit">Submit</button>
             </form>

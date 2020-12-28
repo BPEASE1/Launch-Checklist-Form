@@ -9,5 +9,5 @@
    <li>Distance from Earth: ${110 light years from Earth}</li>
    <li>Number of Moons: ${unknown}</li>
 </ol>
-<img src="${https://www.nasa.gov/sites/default/files/thumbnails/image/heic1916a.jpg}">
+<img src="${}">
 */
